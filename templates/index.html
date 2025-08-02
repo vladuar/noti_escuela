@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Noti-Escuela - Plataforma Educativa</title>
+
+  <!-- Google Fonts: Poppins para elegancia y legibilidad -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --accent: #dbeafe;
+      --bg: #f8fafc;
+      --white: #ffffff;
+      --gray: #e2e8f0;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+      --shadow-md: 0 6px 20px rgba(0, 0, 0, 0.07);
+      --shadow-lg: 0 15px 30px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* Navbar mejorado */
+    nav {
+      background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+      color: var(--white);
+      padding: 0.7rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+      height: 64px;
+    }
+
+    nav .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    nav img {
+      height: 42px;
+      margin-right: 1rem;
+      border-radius: 8px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    nav img:hover {
+      transform: scale(1.08);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    nav .menu {
+      display: flex;
+      gap: 1.8rem;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      position: relative;
+      transition: var(--transition);
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: var(--white);
+      left: 0;
+      bottom: -5px;
+      border-radius: 1px;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Hero Section mejorado */
+    .hero {
+      padding: 5rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border-radius: 16px;
+      margin: 2rem auto;
+      max-width: 1200px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -50%;
+      width: 150%;
+      height: 150%;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
+      transform: rotate(20deg);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+    }
+
+    .hero h2 {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+    }
+
+    .hero .btn {
+      display: inline-block;
+      background-color: var(--primary-dark);
+      color: var(--white);
+      padding: 0.9rem 1.8rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(37, 99, 235, 0.3);
+      transition: var(--transition);
+      font-size: 1rem;
+    }
+
+    .hero .btn:hover {
+      background-color: #1d4ed8;
+      transform: translateY(-3px);
+      box-shadow: 0 7px 20px rgba(37, 99, 235, 0.4);
+    }
+
+    .hero-image {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      text-align: right;
+      padding-left: 2rem;
+    }
+
+    .hero-image img {
+      max-width: 430px;
+      border-radius: 14px;
+      box-shadow: var(--shadow-lg);
+      transition: var(--transition);
+    }
+
+    .hero-image img:hover {
+      transform: rotate(-1.5deg) scale(1.03);
+      filter: brightness(1.02);
+    }
+
+    /* Secciones */
+    .section {
+      padding: 4.5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section h2 {
+      font-size: 2.3rem;
+      color: var(--primary-dark);
+      margin-bottom: 2.5rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+   /* === Estilos para Información Destacada === */
+/* === Sección de Eventos Próximos - Diseño Original === */
+.section-events {
+  padding: 6rem 2rem;
+  background-color: #ffffff;
+  margin-top: 2rem;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.events-title {
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: var(--primary-dark);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.events-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-light);
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+}
+
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.event-item {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+  padding: 1.4rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--gray);
+}
+
+.event-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+  border-color: #dbeafe;
+}
+
+/* Fecha destacada */
+.event-date-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #dbeafe, #bfdbfe);
+  color: var(--primary-dark);
+  border-radius: 14px;
+  font-weight: 700;
+  margin-right: 1.5rem;
+  flex-shrink: 0;
+}
+
+.event-date-box.highlight {
+  background: linear-gradient(135deg, #f87171, #fb923c);
+  color: white;
+}
+
+.event-day {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.event-month {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Detalles del evento */
+.event-details {
+  flex: 1;
+}
+
+.event-details h3 {
+  font-size: 1.25rem;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.event-details p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin: 0.3rem 0;
+}
+
+.event-details p i {
+  width: 18px;
+  color: var(--primary);
+}
+
+/* Categoría del evento */
+.event-category {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: #dbeafe;
+  color: var(--primary-dark);
+  margin-bottom: 0.8rem;
+}
+
+.event-category.sports {
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.event-category.workshop {
+  background: #f0fdf4;
+  color: #16a34a;
+}
+
+/* Botón "Ver más" */
+.event-more {
+  background: var(--primary);
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.3s ease;
+}
+
+.event-more:hover {
+  background: var(--primary-dark);
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .event-item {
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .event-date-box {
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
+
+  .event-more {
+    align-self: flex-start;
+    margin-top: 1rem;
+  }
+
+  .events-title {
+    font-size: 2rem;
+  }
+}
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.card-icon:hover {
+  transition: transform 0.3s cubic-bezier(0.68, -0.55, 0.26, 1.55);
+}
+
+.card-date,
+.card-time {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin: 0.4rem 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.card-date i,
+.card-time i {
+  width: 16px;
+  text-align: center;
+}
+
+.card-badge {
+  display: inline-block;
+  background: var(--primary);
+  color: white;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 20px;
+  margin: 0.8rem 0 1rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 5px rgba(59, 130, 246, 0.2);
+}
+
+.card-tag {
+  display: inline-block;
+  background: #f59e0b;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin: 0.8rem 0 1rem 0;
+  box-shadow: 0 2px 5px rgba(245, 158, 11, 0.2);
+}
+
+.card-btn {
+  display: inline-block;
+  background-color: var(--white);
+  color: var(--primary-dark);
+  padding: 0.6rem 1.2rem;
+  border: 2px solid var(--primary);
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: var(--transition);
+  margin-top: 0.5rem;
+}
+
+.card-btn:hover {
+  background-color: var(--primary);
+  color: var(--white);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.2);
+}
+
+    /* Footer mejorado */
+    footer {
+      background: linear-gradient(135deg, var(--primary-dark), #1e40af);
+      color: var(--white);
+      text-align: center;
+      padding: 3rem 2rem;
+      margin-top: 4rem;
+      font-size: 0.95rem;
+    }
+
+    footer p {
+      opacity: 0.9;
+    }
+
+    footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive mejorado */
+    @media (max-width: 992px) {
+      .hero {
+        padding: 4rem 1.5rem;
+        margin: 1.5rem;
+      }
+
+      .hero h2 {
+        font-size: 2.4rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0.7rem 1rem;
+        height: auto;
+      }
+
+      nav .menu {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 0.5rem;
+        gap: 0.8rem;
+      }
+
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 3rem 1.5rem;
+      }
+
+      .hero-image {
+        padding-left: 0;
+        margin-top: 2rem;
+        text-align: center;
+      }
+
+      .hero-content {
+        max-width: 100%;
+      }
+
+      .section {
+        padding: 3rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav>
+    <div class="logo">
+      <h1>Noti-Escuela</h1>
+    </div>
+    <div class="menu">
+      <a href="{{ url_for('home') }}">Inicio</a>
+      <a href="{{ url_for('reuniones') }}">Reuniones</a>
+      <a href="{{ url_for('eventos') }}">Eventos</a>
+      <a href="{{ url_for('comunicados') }}">Comunicados</a>
+      <a href="{{ url_for('ingreso') }}">Ingreso</a>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Comunicación clara y directa con tu comunidad educativa</h2>
+      <p>Accede a información relevante sobre reuniones, eventos escolares, comunicados y más en un solo lugar, con diseño moderno y experiencia intuitiva.</p>
+      <a href="{{ url_for('eventos') }}" class="btn">Ver próximos eventos</a>
+    </div>
+    <div class="hero-image">
+      <img src="static/img/logo.jpg" alt="Estudiantes trabajando" />
+    </div>
+  </section>
+
+ <!-- Información Destacada -->
+<section class="section">
+  <h2>Información Destacada</h2>
+  <div class="cards">
+
+    <!-- Tarjeta: Reunión de Padres -->
+    <div class="card">
+      <div class="card-icon" style="color: #3b82f6;">
+        <i class="fas fa-users"></i>
+      </div>
+      <h3>Próxima reunión de padres</h3>
+      <p class="card-date">
+        <i class="far fa-calendar-alt"></i> Viernes, 20 de Diciembre de 2024
+      </p>
+      <p class="card-time">
+        <i class="far fa-clock"></i> 15:00 hrs
+      </p>
+      <div class="card-badge">Importante</div>
+      <a href="{{ url_for('eventos') }}" class="card-btn">Ver detalles</a>
+    </div>
+
+    <!-- Tarjeta: Calendario Escolar -->
+    <div class="card">
+      <div class="card-icon" style="color: #10b981;">
+        <i class="fas fa-calendar-alt"></i>
+      </div>
+      <h3>Calendario escolar 2025</h3>
+      <p>Descarga el calendario actualizado con feriados, exámenes, vacaciones y eventos institucionales.</p>
+      <a href="static/White Colorful Class School Schedule Planner.pdf" class="card-btn">Descargar PDF</a>
+    </div>
+
+    <!-- Tarjeta: Actividades Extracurriculares -->
+    <div class="card">
+      <div class="card-icon" style="color: #f59e0b;">
+        <i class="fas fa-football-ball"></i>
+      </div>
+      <h3>Actividades extracurriculares</h3>
+      <p>Nuevos talleres disponibles: Robótica, Música, Deportes y Arte. Inscripciones abiertas.</p>
+      <div class="card-tag">¡Nuevos talleres!</div>
+      <a href="#" class="card-btn">Inscribirse</a>
+    </div>
+
+    <!-- Tarjeta: Comunicados Recientes -->
+    <div class="card">
+      <div class="card-icon" style="color: #ef4444;">
+        <i class="fas fa-bullhorn"></i>
+      </div>
+      <h3>Comunicados recientes</h3>
+      <p>Últimos anuncios oficiales: Cambios en horarios, protocolos de seguridad y más.</p>
+      <div class="card-badge" style="background: #ef4444;">Nuevo</div>
+      <a href="{{ url_for('comunicados') }}" class="card-btn">Leer comunicados</a>
+    </div>
+
+  </div>
+</section>
+
+ <!-- Eventos Próximos -->
+<section class="section-events">
+  <div class="container">
+    <h2 class="events-title">Próximos Eventos</h2>
+    <p class="events-subtitle">Mantente informado sobre actividades, talleres y fechas importantes de la comunidad escolar.</p>
+
+    <div class="events-list">
+
+      <!-- Evento 1 -->
+      <div class="event-item">
+        <div class="event-date-box">
+          <span class="event-day">12</span>
+          <span class="event-month">Mar</span>
+        </div>
+        <div class="event-details">
+          <span class="event-category">Académico</span>
+          <h3>Entrega de boletines del primer periodo</h3>
+          <p><i class="far fa-clock"></i> 08:00 - 12:00 hrs</p>
+          <p><i class="fas fa-map-marker-alt"></i> Salón de usos múltiples</p>
+        </div>
+        <a href="#" class="event-more">Ver más</a>
+      </div>
+
+      <!-- Evento 2 -->
+      <div class="event-item">
+        <div class="event-date-box highlight">
+          <span class="event-day">18</span>
+          <span class="event-month">Mar</span>
+        </div>
+        <div class="event-details">
+          <span class="event-category sports">Deportes</span>
+          <h3>Juegos intercursos 2025</h3>
+          <p><i class="far fa-clock"></i> 09:00 - 16:00 hrs</p>
+          <p><i class="fas fa-map-marker-alt"></i> Canchas deportivas</p>
+        </div>
+        <a href="#" class="event-more">Inscripciones</a>
+      </div>
+
+      <!-- Evento 3 -->
+      <div class="event-item">
+        <div class="event-date-box">
+          <span class="event-day">25</span>
+          <span class="event-month">Mar</span>
+        </div>
+        <div class="event-details">
+          <span class="event-category workshop">Taller</span>
+          <h3>Taller de robótica para primaria</h3>
+          <p><i class="far fa-clock"></i> 14:00 - 16:00 hrs</p>
+          <p><i class="fas fa-map-marker-alt"></i> Laboratorio de Tecnología</p>
+        </div>
+        <a href="#" class="event-more">Reservar cupo</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Noti-Escuela - Todos los derechos reservados</p>
+    <p>Plataforma educativa informativa para escuelas modernas.</p>
+  </footer>
+
+</body>
+</html>
