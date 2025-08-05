@@ -19,7 +19,7 @@ app.secret_key = os.getenv('SECRET_KEY', 'PODIUM2025')
 database_url = os.getenv('DATABASE_URL')
 if not database_url:
     # Fallback local
-    database_url = 'postgresql://postgres:admin@localhost/mi_ienda'
+    database_url = 'postgresql://noti_escuela_user:0RbOzI5EvtckH8xzb8QKl9mAbtJOLHmd@dpg-d281suggjchc738qmfg0-a.oregon-postgres.render.com/noti_escuela'
 
 # 2) Configura SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = database_url
@@ -30,8 +30,9 @@ app.config['SQLALCHEMY_ENGINE_OPTIONS'] = {
     'connect_args': {'sslmode': 'disable'}
 }
 
+# parte que asegura la seguridad del admin con credenciales de administrador
+#--------------------------
 db = SQLAlchemy(app)
-
 class MyAdminIndexView(AdminIndexView):
     def is_accessible(self):
         return session.get('admin_logged_in')
@@ -50,8 +51,8 @@ class SecureModelView(ModelView):
         # Agrega el botón de logout en la esquina superior derecha
         kwargs['logout_button'] = Markup('<a class="btn btn-danger" href="/admin/logout">Cerrar sesión</a>')
         return super().render(template, **kwargs)
-
-# Modelos
+#--------------------------------
+# Modelos de las tablas en la BD
 class UsuarioAdmin(ModelView):
     form_columns = ['nom_usuario', 'ape_usuario', 'username', 'password']
 class Categoria(db.Model):
