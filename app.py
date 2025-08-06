@@ -19,7 +19,7 @@ app.secret_key = os.getenv('SECRET_KEY', 'PODIUM2025')
 database_url = os.getenv('DATABASE_URL')
 if not database_url:
     # Fallback local
-    database_url = 'postgresql://noti_escuela_user:0RbOzI5EvtckH8xzb8QKl9mAbtJOLHmd@dpg-d281suggjchc738qmfg0-a.oregon-postgres.render.com/noti_escuela'
+    database_url = 'postgresql://admin:kKCbTgiMpHDMvQUEvPxrvIaoIcLDmu8H@dpg-d29bft2dbo4c73bb48tg-a.oregon-postgres.render.com/escuela_p4m1'
 
 # 2) Configura SQLAlchemy
 app.config['SQLALCHEMY_DATABASE_URI'] = database_url
